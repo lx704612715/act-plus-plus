@@ -1,15 +1,17 @@
-# Imitation Learning algorithms and Co-training for Mobile ALOHA
+# Evaluation of Imitation Learning Algorithms on Long-horizon Contact-rich Manipulation Tasks
 
+This repo is forked from the [Mobile Aloha](https://github.com/MarkFzp/act-plus-plus). This project aims to evaluate 
+SOAT imitation learning algorithms on long-horizon contact-rich tasks with a Panda robot. 
 
-#### Project Website: https://mobile-aloha.github.io/
+### Required Modifications
 
-This repo contains the implementation of ACT, Diffusion Policy and VINN, together with 2 simulated environments:
-Transfer Cube and Bimanual Insertion. You can train and evaluate them in sim or real.
-For real, you would also need to install [Mobile ALOHA](https://github.com/MarkFzp/mobile-aloha). This repo is forked from the [ACT repo](https://github.com/tonyzhaozh/act).
+- [] Modify state and action space
+  - [] State space: robot proprioception state + wrist camera image
+  - [] Action space: joint position for one single arm
+- [] Inference code to deploy the trained model into a real robot
 
 ### Updates:
 You can find all scripted/human demo for simulated environments [here](https://drive.google.com/drive/folders/1gPR03v05S1xiInoVJn7G7VJ9pDCnxq9O?usp=share_link).
-
 
 ### Repo Structure
 - ``imitate_episodes.py`` Train and Evaluate ACT
@@ -83,3 +85,10 @@ Please refer to [tuning tips](https://docs.google.com/document/d/1FVIZfoALXg_ZkY
 
 ### [ACT tuning tips](https://docs.google.com/document/d/1FVIZfoALXg_ZkYKaYVh-qOlaXveq5CtvJHXkY25eYhs/edit?usp=sharing)
 TL;DR: if your ACT policy is jerky or pauses in the middle of an episode, just train for longer! Success rate and smoothness can improve way after loss plateaus.
+
+### Trouble Shooting
+1. mujoco.FatalError: gladLoadGL error 
+    * Solution: export MUJOCO_GL=osmesa
+    * Useful documents on working with mujoco-based environment 
+      [link](https://pytorch.org/rl/reference/generated/knowledge_base/MUJOCO_INSTALLATION.html)
+
